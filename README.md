@@ -29,6 +29,8 @@ player_badge_list:
 - player_id: PlayerId@discord
   badge_name: 徽章名称
   badge_color: red
+# Rainbow color change interval (in seconds) | 彩虹颜色切换间隔，单位为秒
+rainbow_interval: 0.6
 ```
 
 `badge_color` must use only the following colors:
@@ -40,6 +42,7 @@ private static readonly HashSet<string> Color = new(StringComparer.OrdinalIgnore
     "pink", "red", "brown", "silver", "light_green", "crimson",
     "cyan", "aqua", "deep_pink", "tomato", "yellow", "magenta",
     "blue_green", "orange", "lime", "green", "emerald", "carmine",
-    "nickel", "mint", "army_green", "pumpkin", "white"
+    "nickel", "mint", "army_green", "pumpkin", "white",
+    "rainbow"
 };
 ```

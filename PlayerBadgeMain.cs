@@ -32,7 +32,7 @@ public class PlayerBadgeMain : Plugin {
     /// <summary>
     /// 插件版本。
     /// </summary>
-    public override Version Version => new(1, 0, 0, 0);
+    public override Version Version => new(1, 1, 0, 0);
 
     /// <summary>
     /// 需要的 LabApi 版本。
@@ -49,13 +49,22 @@ public class PlayerBadgeMain : Plugin {
     /// </summary>
     public Dictionary<string, ListType> BadgeCache { get; set; }
 
-    // 加载配置时
-    public override void LoadConfigs()
-    {
+    /// <summary>
+    /// 彩虹颜色切换间隔，单位为秒。
+    /// </summary>
+    public float RainbowInterval { get; set; }
+
+    // 加载配置时。
+    public override void LoadConfigs() {
         base.LoadConfigs();
         var config = this.LoadConfig<PlayerBadgeConfig>("configs.yml") ?? new PlayerBadgeConfig();
+        // 检查重复 PlayerId
+        if (config.PlayerBadgeList.Select(x => x.PlayerId).Distinct().Count() != config.PlayerBadgeList.Length)
+            throw new PlayerIdDuplicateException("Duplicate PlayerId found in configuration.");
+        // 构建徽章缓存
         BadgeCache = config.PlayerBadgeList
             .ToDictionary(x => x.PlayerId, x => x);
+        RainbowInterval = config.RainbowInterval;
     }
 
     // 启用插件。
@@ -68,6 +77,7 @@ public class PlayerBadgeMain : Plugin {
     // 禁用插件。
     public override void Disable() {
         CustomHandlersManager.UnregisterEventsHandler(Events);
+        Events.CleanupAllRainbowEffects();
         Events = null;
         BadgeCache = null;
         Singleton = null;
@@ -85,10 +95,17 @@ public class PlayerBadgeConfig {
     public ListType[] PlayerBadgeList { get; set; } = [new() {
         PlayerId = "PlayerId@steam",
         BadgeName = "徽章名称",
-        BadgeColor = "red"
+        BadgeColor = "rainbow"
     }];
+    /// <summary>
+    /// 彩虹颜色切换间隔，单位为秒。
+    /// </summary>
+    public float RainbowInterval { get; set; } = 0.6f;
 }
 
+/// <summary>
+/// 玩家徽章列表类型。
+/// </summary>
 public class ListType {
     /// <summary>
     /// 玩家 SteamID64。
@@ -103,3 +120,9 @@ public class ListType {
     /// </summary>
     public string BadgeColor { get; set; }
 }
+
+/// <summary>
+/// PlayerId 重复错误。
+/// </summary>
+/// <param name="message">错误信息</param>
+public class PlayerIdDuplicateException(string message) : Exception(message);
