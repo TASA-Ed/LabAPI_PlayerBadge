@@ -1,0 +1,9 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="LabAPI_PlayerBadge.csproj" Id="c19a18d7-d0ca-4e16-98f8-d5a194e16380">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+</Solution>
