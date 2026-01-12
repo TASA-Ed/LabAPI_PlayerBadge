@@ -1,8 +1,8 @@
 # LabAPI_PlayerBadge
 
-[![GitHub release](https://flat.badgen.net/github/release/TASA-Ed/LabAPI_SuicideCommand)](https://github.com/TASA-Ed/LabAPI_SuicideCommand/releases)
-[![LabAPI Version](https://flat.badgen.net/static/LabAPI/v1.1.4)](https://github.com/northwood-studios/LabAPI)
-[![License](https://flat.badgen.net/github/license/TASA-Ed/LabAPI_SuicideCommand/)](https://github.com/TASA-Ed/LabAPI_SuicideCommand/blob/master/LICENSE)
+[![GitHub release](https://flat.badgen.net/github/release/TASA-Ed/LabAPI_PlayerBadge)](https://github.com/TASA-Ed/LabAPI_PlayerBadge/releases)
+[![LabAPI Version](https://flat.badgen.net/static/LabAPI/v1.1.5)](https://github.com/northwood-studios/LabAPI)
+[![License](https://flat.badgen.net/github/license/TASA-Ed/LabAPI_PlayerBadge/)](https://github.com/TASA-Ed/LabAPI_PlayerBadge/blob/master/LICENSE)
 
 A LabAPI plugin that awards badges when players join.
 
