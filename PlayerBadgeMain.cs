@@ -24,7 +24,7 @@ public class PlayerBadgeMain : Plugin {
     /// <summary>
     /// 插件描述。
     /// </summary>
-    public override string Description => "Award a badge when a player joins";
+    public override string Description => "Award a badge when a player joins.";
     /// <summary>
     /// 插件作者。
     /// </summary>
@@ -55,7 +55,7 @@ public class PlayerBadgeMain : Plugin {
         base.LoadConfigs();
         var config = this.LoadConfig<PlayerBadgeConfig>("configs.yml") ?? new PlayerBadgeConfig();
         BadgeCache = config.PlayerBadgeList
-            .ToDictionary(x => x.SteamId64, x => x);
+            .ToDictionary(x => x.PlayerId, x => x);
     }
 
     // 启用插件。
@@ -83,7 +83,7 @@ public class PlayerBadgeConfig {
     /// 玩家徽章列表。如 [new ListType { SteamId64, BadgeName, BadgeColor }]。
     /// </summary>
     public ListType[] PlayerBadgeList { get; set; } = [new() {
-        SteamId64 = "7656@steam",
+        PlayerId = "PlayerId@steam",
         BadgeName = "徽章名称",
         BadgeColor = "red"
     }];
@@ -93,7 +93,7 @@ public class ListType {
     /// <summary>
     /// 玩家 SteamID64。
     /// </summary>
-    public string SteamId64 { get; set; }
+    public string PlayerId { get; set; }
     /// <summary>
     /// 徽章名称。
     /// </summary>
